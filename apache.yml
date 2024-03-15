@@ -20,6 +20,6 @@
 
     - name: copy the html file in the apache default folder
       copy:
-        src: test-page.html
+        src: ./test-page.html
         dest: /var/www/html/
         remote_src: yes
