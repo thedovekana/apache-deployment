@@ -14,19 +14,18 @@
         state: started
         enabled: yes
 
+    - name: Remove existing files in apache default folder
+      file:
+        path: /var/www/html/
+        state: absent
 
-    - name: remove apache default file
-      command: rm -f /var/www/html/*
-
-    - name: copy the html file in the apache default folder
+    - name: Copy the html file to the apache default folder
       copy:
-        src: ./test-page.html
+        src: test-page.html
         dest: /var/www/html/
-        remote_src: yes
 
-    - name: restart apache after copying the file
+    - name: Restart Apache after copying the file
       service:
         name: httpd
         state: restarted
-
 
