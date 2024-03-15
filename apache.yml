@@ -1,0 +1,25 @@
+---
+- name: Install Apache
+  hosts: webserver
+  become: yes
+  tasks:
+    - name: Install apache
+      package:
+        name: httpd
+        state: present
+
+    - name: Start apache service and enable it on boot
+      service:
+        name: httpd
+        state: started
+        enabled: yes
+
+
+    - name: remove apache default file
+      command: rm -f /var/www/html/*
+
+    - name: copy the html file in the apache default folder
+      copy:
+        src: test-page.html
+        dest: /var/www/html/
+        remote_src: yes
