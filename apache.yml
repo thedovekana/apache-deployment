@@ -23,3 +23,10 @@
         src: ./test-page.html
         dest: /var/www/html/
         remote_src: yes
+
+    - name: restart apache after copying the file
+      service:
+        name: httpd
+        state: restarted
+
+
