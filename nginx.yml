@@ -1,0 +1,29 @@
+---
+- name: Install nginx
+  hosts: webserver
+  become: yes
+  tasks:
+    - name: Install nginx
+      package:
+        name: nginx
+        state: present
+
+    - name: Start nginx service and enable it on boot
+      service:
+        name: nginx
+        state: started
+        enabled: yes
+
+    - name: Remove existing files in nginx default folder
+      command: rm -f /usr/share/nginx/html/*
+
+    - name: Copy the html file to the nginx default folder
+      copy:
+        src: test-page.html
+        dest: /usr/share/nginx/html
+
+    - name: Restart nginx after copying the file
+      service:
+        name: nginx
+        state: restarted
+
