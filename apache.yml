@@ -15,9 +15,7 @@
         enabled: yes
 
     - name: Remove existing files in apache default folder
-      file:
-        path: /var/www/html/
-        state: absent
+      command: rm -f /var/www/html/*
 
     - name: Copy the html file to the apache default folder
       copy:
