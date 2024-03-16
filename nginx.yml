@@ -15,7 +15,7 @@
         enabled: yes
 
     - name: Remove existing files in nginx default folder
-      command: rm -f /usr/share/nginx/html/*
+      command: rm -f /usr/share/nginx/html/
 
     - name: Copy the html file to the nginx default folder
       copy:
